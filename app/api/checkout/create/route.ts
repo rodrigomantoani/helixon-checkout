@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const productDescription = process.env.PRODUCT_DESCRIPTION || 'Peptídeos Premium';
 
     // Criar order no banco
-    const order = await prisma.order.create({
+    const order = await prisma.checkoutOrder.create({
       data: {
         customerName: data.name,
         customerEmail: data.email,
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
     const transaction = cashinResponse.transaction[0];
 
     // Atualizar order com dados do PIX
-    await prisma.order.update({
+    await prisma.checkoutOrder.update({
       where: { id: order.id },
       data: {
         transactionId: transaction.id,

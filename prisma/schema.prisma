@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Order {
+model CheckoutOrder {
   id                String   @id @default(uuid())
   transactionId     String?  @unique
   customerName      String
@@ -21,7 +21,7 @@ model Order {
   pixCode           String?  @db.Text
   pixQrCodeImage    String?  @db.Text
   
-  status            OrderStatus @default(PENDING)
+  status            CheckoutOrderStatus @default(PENDING)
   
   reference         String?
   extra             String?
@@ -35,9 +35,10 @@ model Order {
   @@index([customerEmail])
   @@index([status])
   @@index([createdAt])
+  @@map("checkout_orders")
 }
 
-enum OrderStatus {
+enum CheckoutOrderStatus {
   PENDING
   PAID
   PARTIALLY_PAID

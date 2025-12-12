@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Buscar order no banco
-    const order = await prisma.order.findUnique({
+    const order = await prisma.checkoutOrder.findUnique({
       where: { id: orderId },
     });
 
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 
         // Atualizar status no banco se mudou
         if (order.status !== newStatus) {
-          await prisma.order.update({
+          await prisma.checkoutOrder.update({
             where: { id: orderId },
             data: {
               status: newStatus,

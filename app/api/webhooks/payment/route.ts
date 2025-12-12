@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Buscar order pelo transactionId
-    const order = await prisma.order.findUnique({
+    const order = await prisma.checkoutOrder.findUnique({
       where: { transactionId: payload.transaction_id },
     });
 
@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     const newStatus = statusMap[payload.status] || 'PENDING';
 
     // Atualizar order
-    await prisma.order.update({
+    await prisma.checkoutOrder.update({
       where: { id: order.id },
       data: {
         status: newStatus,

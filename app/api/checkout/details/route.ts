@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Buscar order completa no banco
-    const order = await prisma.order.findUnique({
+    const order = await prisma.checkoutOrder.findUnique({
       where: { id: orderId },
     });
 
