@@ -3,20 +3,5 @@
   "installCommand": "npm install",
   "devCommand": "next dev",
   "framework": "nextjs",
-  "regions": ["gru1"],
-  "env": {
-    "NEXT_PUBLIC_RECEBA_ENV": "@receba_env",
-    "NEXT_PUBLIC_APP_URL": "@app_url"
-  },
-  "build": {
-    "env": {
-      "RECEBA_API_KEY": "@receba_api_key",
-      "RECEBA_PLATFORM_ID": "@receba_platform_id",
-      "RECEBA_WEBHOOK_SECRET": "@receba_webhook_secret",
-      "DATABASE_URL": "@database_url",
-      "PRODUCT_NAME": "@product_name",
-      "PRODUCT_PRICE": "@product_price",
-      "PRODUCT_DESCRIPTION": "@product_description"
-    }
-  }
+  "regions": ["gru1"]
 }
