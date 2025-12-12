@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id                String   @id @default(uuid())
+  transactionId     String?  @unique
+  customerName      String
+  customerEmail     String
+  customerPhone     String
+  customerDocument  String
+  
+  productName       String
+  productPrice      Int
+  
+  pixCode           String?  @db.Text
+  pixQrCodeImage    String?  @db.Text
+  
+  status            OrderStatus @default(PENDING)
+  
+  reference         String?
+  extra             String?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  paidAt            DateTime?
+  expiresAt         DateTime?
+  
+  @@index([transactionId])
+  @@index([customerEmail])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PARTIALLY_PAID
+  DENIED
+  CANCELED
+  REFUND
+  IN_PROCESS
+  IN_ANALYSIS
+  EXPIRED
+}
